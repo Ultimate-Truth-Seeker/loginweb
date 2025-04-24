@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('registerForm')
     const messageElement = document.getElementById('registerMessage')
     // Asegúrense que esta URL apunta a su backend Go
-    const backendUrl = 'http://localhost:3000'
+    const backendUrl = 'http://localhost:3000/auth'
 
     registerForm.addEventListener('submit', async (event) => {
         event.preventDefault()
@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!username || !password) {
             messageElement.textContent = 'Por favor llenen todos los campos.'
+            return
+        }
+        if (!registerForm.checkValidity()) {
+            registerForm.reportValidity()
             return
         }
 
